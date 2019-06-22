@@ -6,7 +6,7 @@ import {
   Image,
   StatusBar,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 
 import Spinner from "react-native-loading-spinner-overlay";
@@ -34,8 +34,9 @@ class Home extends Component {
         "http://www.mcdonalds.co.kr/uploadFolder/banner/banner_201906070330434080.jpg?timestamp=1559985327696",
         "http://www.mcdonalds.co.kr/uploadFolder/banner/banner_201906040801014110.jpg",
         "http://www.mcdonalds.co.kr/uploadFolder/banner/banner_201906040739140260.jpg",
-        "http://www.mcdonalds.co.kr/uploadFolder/banner/banner_201905301256117210.jpg"
-      ]
+        "http://www.mcdonalds.co.kr/uploadFolder/banner/banner_201905301256117210.jpg",
+        "https://d1cua0vf0mkpiy.cloudfront.net/images/web/banner/40b82bbe-c6ea-4fae-a7df-febaba5ddbc6.png",
+      ],
     };
   }
 
@@ -49,7 +50,7 @@ class Home extends Component {
       .then(responseJson => {
         this.setState({
           items: responseJson,
-          spinner: false
+          spinner: false,
         });
       });
   };
@@ -68,14 +69,27 @@ class Home extends Component {
     }
 
     const ImageList = imageList.map((url, index) => (
-      <View key={index} style={[styles.child, { backgroundColor: "#ff5000" }]}>
+      <View
+        key={index}
+        style={[
+          styles.child,
+          {
+            borderBottomWidth: 5,
+            borderBottomColor: "#000",
+            borderTopWidth: 5,
+            borderTopColor: "#000",
+            backgroundColor: "#fff",
+          },
+        ]}
+      >
         <Image
           source={{
-            uri: url
+            uri: url,
           }}
           style={{
             width: deviceHeight,
-            height: deviceHeight * 0.6
+            height: deviceHeight * 0.6,
+            resizeMode: "contain",
           }}
         />
       </View>
@@ -132,8 +146,8 @@ class Home extends Component {
       //Asset.loadAsync([require("../../assets/images/icon.png")]),
       Font.loadAsync({
         ...Ionicons.font,
-        ...MaterialIcons.font
-      })
+        ...MaterialIcons.font,
+      }),
     ]);
   };
 
@@ -143,24 +157,24 @@ class Home extends Component {
 
   _handleFinishLoading = async () => {
     this.setState({
-      isLoadingComplete: true
+      isLoadingComplete: true,
     });
   };
 }
 
 const styles = StyleSheet.create({
   spinnerTextStyle: {
-    color: "#FFF"
+    color: "#FFF",
   },
   swipeContainer: {
     backgroundColor: "white",
-    paddingTop: 10
+    paddingTop: 10,
   },
   child: {
     height: deviceHeight * 0.6,
     width: deviceWidth,
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
 });
 
 export default Home;

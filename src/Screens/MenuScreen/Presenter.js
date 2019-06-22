@@ -6,7 +6,7 @@ import {
   ListItem,
   Left,
   Right,
-  Body
+  Body,
 } from "native-base";
 import PropTypes from "prop-types";
 import React from "react";
@@ -15,7 +15,7 @@ import {
   Dimensions,
   TouchableOpacity,
   View,
-  Image
+  Image,
 } from "react-native";
 import ImageLoad from "react-native-image-placeholder";
 
@@ -35,6 +35,7 @@ const ChildTab = props => {
       price={ele.price}
       _likeClick={_likeClick}
       myLikes={myLikes}
+      detailRandomOff={props.detailRandomOff}
     />
   ));
 
@@ -53,16 +54,17 @@ const MenuItem = props => {
       <Left style={styles.left1}>
         <TouchableOpacity
           onPress={() =>
-            props._likeClick(props.id, props.image, props.name, props.price)
-          }
+            props._likeClick(props.id, props.image, props.name, props.price)}
         >
           <View>
             {/* <SvgUri source={props.myLikes[props.id] ? fillHeart : emptyHeart} /> */}
             <Image
               source={
-                props.myLikes[props.id]
-                  ? require("../../assets/images/fill_heart.png")
-                  : require("../../assets/images/empty_heart.png")
+                props.myLikes[props.id] ? (
+                  require("../../assets/images/fill_heart.png")
+                ) : (
+                  require("../../assets/images/empty_heart.png")
+                )
               }
             />
           </View>
@@ -79,11 +81,11 @@ const MenuItem = props => {
           style={{
             width: "100%",
             height: deviceWidth * 0.12,
-            resizeMode: "contain"
+            resizeMode: "contain",
           }}
           loadingStyle={{ size: "large", color: "black" }}
           source={{
-            uri: props.image
+            uri: props.image,
           }}
         />
       </Left>
@@ -95,10 +97,16 @@ const MenuItem = props => {
         </Text>
       </Body>
       <Right>
-        <View>
-          {/* <SvgUri source={detailArrow} /> */}
-          <Image source={require("../../assets/images/detail_arrow.png")} />
-        </View>
+        <TouchableOpacity
+          onPress={() => {
+            props.detailRandomOff(props.id);
+          }}
+        >
+          <View>
+            {/* <SvgUri source={detailArrow} /> */}
+            <Image source={require("../../assets/images/detail_arrow.png")} />
+          </View>
+        </TouchableOpacity>
       </Right>
     </ListItem>
   );
@@ -108,13 +116,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: deviceHeight * 0.09,
-    marginLeft: 0
+    marginLeft: 0,
   },
 
   left1: {
     flex: 15,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
 
   left2: {
@@ -122,32 +130,32 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   body: {
     flex: 62,
     flexDirection: "column",
-    marginLeft: 10
+    marginLeft: 10,
   },
   right: {
     flex: 8,
-    marginRight: 15
+    marginRight: 15,
   },
   placeHolderStyle: {
     width: "100%",
     height: 100,
-    resizeMode: "contain"
-  }
+    resizeMode: "contain",
+  },
 });
 
 ChildTab.propTypes = {
-  menu: PropTypes.array
+  menu: PropTypes.array,
 };
 
 MenuItem.propTypes = {
   image: PropTypes.string,
   name: PropTypes.string,
-  price: PropTypes.string
+  price: PropTypes.string,
 };
 
 export default ChildTab;
