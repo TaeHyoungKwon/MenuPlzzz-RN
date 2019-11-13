@@ -1,13 +1,13 @@
+import { Font } from "expo-font";
 import React from "react";
 import { StyleSheet, ToastAndroid, BackHandler } from "react-native";
+
 import { Router, Stack, Scene, Actions } from "react-native-router-flux";
 
-import { Font } from "expo";
-
 import { Home } from "./Screens/HomeScreen";
+import { Likes } from "./Screens/LikesScreen/index";
 import { Menu } from "./Screens/MenuScreen/index";
 import { Search } from "./Screens/SearchScreen/index";
-import { Likes } from "./Screens/LikesScreen/index";
 import { WebScreen } from "./Screens/WebScreen/index";
 
 export default class App extends React.Component {
@@ -18,7 +18,7 @@ export default class App extends React.Component {
   componentDidMount() {
     BackHandler.addEventListener("hardwareBackPress", this.handleBackButton);
     Font.loadAsync({
-      "PlayfairDisplay-Black": require("./assets/fonts/PlayfairDisplay-Bold.ttf")
+      "PlayfairDisplay-Black": require("./assets/fonts/PlayfairDisplay-Bold.ttf"),
     });
   }
 
@@ -90,6 +90,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
 });
