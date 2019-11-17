@@ -112,17 +112,7 @@ class Home extends Component {
           </TouchableOpacity>
         </View>
         <View style={{ flex: 1 }}>
-          <View style={[styles.swipeContainer]}>
-            <SwiperFlatList
-              autoplay
-              autoplayLoop
-              autoplayDelay={2}
-              index={0}
-              showPagination
-            >
-              {ImageList}
-            </SwiperFlatList>
-          </View>
+   
           <StoreList items={items} />
         </View>
       </React.Fragment>
