@@ -1,5 +1,5 @@
 import { AppLoading } from "expo";
-import { Font } from "expo-font";
+import * as Font from "expo-font";
 
 import React, { Component } from "react";
 import {

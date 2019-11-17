@@ -1,4 +1,4 @@
-import { Font } from "expo-font";
+import * as Font from "expo-font";
 import React from "react";
 import { StyleSheet, ToastAndroid, BackHandler } from "react-native";
 
